@@ -1,8 +1,6 @@
 package com.example.jpatut;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
@@ -10,27 +8,20 @@ import java.util.UUID;
 @Table(name="user_info")
 public class User {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int user_id;
     private String name;
     private int age;
     private String country;
-
+    @OneToOne(mappedBy = "user")//bi-directional mapping(Parent to child) is optional
+    private Card card;
     public User() {
     }
 
-    public User(int id, String name, int age, String country) {
-        this.id= id;
+    public User(String name, int age, String country) {
         this.name = name;
         this.age = age;
         this.country = country;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {

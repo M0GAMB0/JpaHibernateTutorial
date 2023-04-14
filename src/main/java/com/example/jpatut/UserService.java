@@ -2,6 +2,7 @@ package com.example.jpatut;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -19,4 +20,10 @@ public class UserService {
     public User getUserById(int id){
         return repo.findById(id).get();
     }
+    public String deleteAllUsers(){
+        repo.deleteAll();
+        return "All user deleted";
+    }
+
+
 }
